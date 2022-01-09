@@ -68,7 +68,7 @@ public class User implements Serializable {
 
   }
 
-  public User(Integer id, String firstName, String lastName, boolean isStudent, String department, String year) {
+  public User(Integer id, String firstName, String lastName, boolean isStudent, String department, String year, UserCredentials userCredentials) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

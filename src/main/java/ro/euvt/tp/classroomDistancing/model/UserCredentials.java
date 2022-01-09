@@ -22,21 +22,17 @@ public class UserCredentials implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String username;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    public UserCredentials(String username, String email, String password, UserRole userRole, Boolean locked, Boolean enabled){
-        this.username = username;
+    public UserCredentials(String email, String password, UserRole userRole){
         this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override
@@ -52,7 +48,7 @@ public class UserCredentials implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
