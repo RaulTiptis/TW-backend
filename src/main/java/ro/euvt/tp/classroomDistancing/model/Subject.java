@@ -13,9 +13,6 @@ public class Subject implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   private String name;
-  @OneToMany
-  @Nullable
-  private List<Classroom> classrooms;
 
   public Integer getId() {
     return id;
@@ -29,21 +26,12 @@ public class Subject implements Serializable {
     this.name = name;
   }
 
-  public List<Classroom> getClassroom() {
-    return classrooms;
-  }
-
-  public void setClassroom(List<Classroom> classrooms) {
-    this.classrooms = classrooms;
-  }
-
   public Subject(){
 
   }
 
-  public Subject(Integer id, String name, List<Classroom> classrooms) {
+  public Subject(Integer id, String name) {
     this.id = id;
     this.name = name;
-    this.classrooms = classrooms;
   }
 }

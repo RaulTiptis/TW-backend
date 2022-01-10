@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Classroom implements Serializable {
@@ -21,25 +22,23 @@ public class Classroom implements Serializable {
   @OneToOne
   @Nullable
   private User teacher;
-  @OneToMany
-  @Nullable
-  private List<User> students;
   @ManyToOne
   @Nullable
   private Subject subject;
+  @OneToMany(mappedBy = "course")
+  Set<CourseRegistration> registration;
 
   public Classroom(){
 
   }
 
-  public Classroom(Integer id,String name, String location, int capacity, User teacher, List<User> students, Subject subject, String day, String hour, String month) {
+  public Classroom(Integer id,String name, String location, int capacity, User teacher, Subject subject, String day, String hour, String month) {
     this.id = id;
     this.name = name;
     this.location = location;
     this.capacity = capacity;
     this.subject = subject;
     this.teacher = teacher;
-    this.students = students;
     this.day = day;
     this.hour = hour;
     this.month = month;
@@ -51,14 +50,6 @@ public class Classroom implements Serializable {
 
   public void setTeacher(User teacher){
     this.teacher = teacher;
-  }
-
-  public List<User> getStudents(){
-    return students;
-  }
-
-  public void setStudents(List<User> students){
-    this.students = students;
   }
 
   public Integer getId(){

@@ -2,6 +2,8 @@ package ro.euvt.tp.classroomDistancing.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User implements Serializable {
@@ -19,6 +21,14 @@ public class User implements Serializable {
   private String department;
 
   private String year;
+
+  @OneToMany(mappedBy = "student")
+  Set<CourseRegistration> registrationSet;
+
+//  @OneToOne
+//  @JoinColumn(
+//  name = "user_credentials_id")
+//  private UserCredentials userCredentials;
 
   public Integer getId() {
     return id;
@@ -64,16 +74,25 @@ public class User implements Serializable {
     this.year = year;
   }
 
+//  public UserCredentials getUserCredentials(){
+//    return userCredentials;
+//  }
+//
+//  public void setUserCredentials(UserCredentials userCredentials){
+//    this.userCredentials = userCredentials;
+//  }
+
   public User(){
 
   }
 
-  public User(Integer id, String firstName, String lastName, boolean isStudent, String department, String year, UserCredentials userCredentials) {
+  public User(Integer id, String firstName, String lastName, boolean isStudent, String department, String year) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.isStudent = isStudent;
     this.department = department;
     this. year = year;
+//    this.userCredentials = userCredentials;
   }
 }

@@ -25,11 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/registration/**", "/User/**", "/Classroom/**", "/Subject/**")
+                .antMatchers("/api/v1/registration/**", "/User/**", "/Classroom/**", "/Subject/**", "/CourseReg/**", "/login/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin();
+                .formLogin().defaultSuccessUrl("http://localhost:4200/select-screen", true);
+
     }
 
     @Override
